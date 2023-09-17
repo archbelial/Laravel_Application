@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\PaidLeaveController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,5 +20,6 @@ Route::get('/', function () {
 });
 
 Route::resource('employees', EmployeeController::class);
+Route::resource('paidleaves', PaidLeaveController::class);
 // Route::get('employees', [EmployeeController::class, 'index']);
-// Route::post('employees/create', [EmployeeController::class, 'create']);
+Route::post('/employees/proceed/{id}', [EmployeeController::class, 'proceed'])->name('employees.proceed-data');

@@ -16,8 +16,10 @@ class EmployeeController extends Controller
     {
         $response = Http::get($this->ApiUrl);
         $employees = $response->json();
+        // dd($employees);
         return view('employees.index', compact('employees'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -127,5 +129,18 @@ class EmployeeController extends Controller
 
         // Redirect to the list of employee
         return redirect('/employees')->with('Success', 'Berhasil Hapus !');
+    }
+
+    public function proceed($id) {
+        $data = http::post("$this->ApiUrl/proceed/$id");
+        $reponse = $data->json();
+
+        // dd($reponse);
+        if ($reponse) {
+            return redirect('/employees')->with('Success', 'Data Proceeded !');
+        } else {
+            return redirect('/employees/'.$id."/edit")->with('Failed', 'Failed To Proceeded !');
+        }
+        
     }
 }
