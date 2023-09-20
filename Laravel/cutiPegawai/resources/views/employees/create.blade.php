@@ -39,6 +39,15 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6">
                 <div class="form-group">
+                    <strong>Gender:</strong>
+                    <select name="gender" class="form-control">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6">
+                <div class="form-group">
                     <strong>Position:</strong>
                     <input type="text" name="position" class="form-control" placeholder="position">
                 </div>
@@ -53,13 +62,6 @@
                 <div class="form-group">
                     <strong>Leave Days:</strong>
                     <input type="text" name="leave_days" class="form-control" placeholder="Leave Days">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Gender:</strong>
-                    <input type="radio" name="gender" value="Male"> Male
-                    <input type="radio" name="gender" value="Female"> Female
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">

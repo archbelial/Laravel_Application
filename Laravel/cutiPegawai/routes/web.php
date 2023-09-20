@@ -20,6 +20,9 @@ Route::get('/', function () {
 });
 
 Route::resource('employees', EmployeeController::class);
-Route::resource('paidleaves', PaidLeaveController::class);
-// Route::get('employees', [EmployeeController::class, 'index']);
 Route::post('/employees/proceed/{id}', [EmployeeController::class, 'proceed'])->name('employees.proceed-data');
+
+
+Route::resource('paidleaves', PaidLeaveController::class);
+Route::post('/paidleaves/proceed/{id}', [PaidLeaveController::class, 'proceed'])->name('paidleaves.proceed-data');
+// Route::get('employees', [EmployeeController::class, 'index']);

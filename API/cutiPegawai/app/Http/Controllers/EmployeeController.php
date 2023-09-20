@@ -19,7 +19,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::all();
+        $employees = Employee::where('STATUS', 'HOLD')->get();
 
         if ($employees) {
             return ApiFormatter::createApi(200, 'Success', $employees);

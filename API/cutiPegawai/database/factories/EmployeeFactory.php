@@ -20,8 +20,9 @@ class EmployeeFactory extends Factory
             'CODE' => $this->faker->unique()->randomNumber(5),
             'NAME' => $this->faker->name,
             'GENDER' => $this->faker->randomElement(['Male', 'Female']),
-            'POSITION' => $this->faker->jobTitle,
-            'LEVEL' => $this->faker->randomElement(['Staff', 'Manager', 'Senior Manager']),
+            'POSITION' => $this->faker->randomElement(['Developer', 'Support', 'Quality Assurance', 'Technical Writter']),
+            'LEVEL' => $this->faker->randomElement(['Staff', 'Project Manager', 'Project Leader', 'QA', 'TW']),
+            'STATUS' => $this->faker->randomElement(['HOLD']),
             'LEAVE_DAYS' => $this->faker->numberBetween(4, 12),
         ];
     }

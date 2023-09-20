@@ -6,7 +6,7 @@ use App\Models\PaidLeave;
 use App\Http\Requests\StorePaidLeaveRequest;
 use App\Http\Requests\UpdatePaidLeaveRequest;
 use App\Helpers\ApiFormatter;
-
+use Illuminate\Support\Facades\DB;
 
 class PaidLeaveController extends Controller
 {
@@ -83,7 +83,7 @@ class PaidLeaveController extends Controller
             if ($employee) {
                 return ApiFormatter::createApi(200, 'Success', $employee);
             } else {
-                return ApiFormatter::createApi(400, 'Failed');
+                return ApiFormatter::createApi(404, 'Failed', 'Data Not Found');
             }
         } catch (\Throwable $th) {
             return ApiFormatter::createApi(400, 'Failed', $th->getMessage());
@@ -112,12 +112,13 @@ class PaidLeaveController extends Controller
     {
         try {
             $validatedData = $request->validate([
-                'code'           => 'required|numeric',
-                'name'           => 'required|min:3',
-                'gender'         => 'required',
-                'position'       => 'required',
-                'level'          => 'required',
-                'leave_days'     => 'required',
+                'code'              => 'required|numeric',
+                'name'              => 'required|min:3',
+                'position'          => 'required',
+                'level'             => 'required',
+                'paid_leave_start'  => 'required',
+                'paid_leave_end'    => 'required',
+                'remark'            => 'required',
             ]);
             
             $paidLeave = PaidLeave::find($id);
@@ -150,12 +151,28 @@ class PaidLeaveController extends Controller
         try {
             $paidLeave = PaidLeave::destroy($id);
             if ($paidLeave) {
-                return ApiFormatter::createApi(200, 'Success', $paidLeave);
+                return ApiFormatter::createApi(200, 'Success', 'Employee has been deleted successfully.');
             } else {
-                return ApiFormatter::createApi(400, 'Failed');
+                return ApiFormatter::createApi(400, 'Failed', 'Employee deletion failed. Employee not found.');
             }
         } catch (\Throwable $th) {
-            return ApiFormatter::createApi(400, 'Failed', $th->getMessage());
+            return ApiFormatter::createApi(400, 'Failed', 'An error occurred while deleting the employee: ' . $th->getMessage());
+        }
+    }
+
+    public function proceed(PaidLeave $paidLeave, $id)
+    {
+        try {
+
+            $proceedEmployee = db::select('exec xsp_paid_leaves_proceed @p_id = ?',[$id]);
+
+            if ($proceedEmployee) {
+                return ApiFormatter::createApi(200, 'Success', 'Employee data has been proceeded.');
+            } else {
+                return ApiFormatter::createApi(400, 'Failed', 'Failed to proceed employee data.');
+            }
+        } catch (\Throwable $th) {
+            return ApiFormatter::createApi(400, 'Failed',  'An error occurred while processing the request: ' . $th->getMessage());
         }
     }
 }

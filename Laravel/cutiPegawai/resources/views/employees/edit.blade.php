@@ -48,6 +48,15 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6">
             <div class="form-group">
+                <strong>Gender:</strong>
+                <select name="gender" class="form-control" disabled>
+                    <option value="Male" {{$employee['data']['GENDER'] === 'Male'? 'selected' : ''}} >Male</option>
+                    <option value="Female" {{$employee['data']['GENDER'] === 'Female'? 'selected' : ''}}>Female</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6">
+            <div class="form-group">
                 <strong>Position:</strong>
                 <input type="text" name="position" class="form-control" placeholder="position" value="{{$employee['data']['POSITION']}}">
             </div>
@@ -62,13 +71,6 @@
             <div class="form-group">
                 <strong>Leave Days:</strong>
                 <input type="text" name="leave_days" class="form-control" placeholder="Leave Days" value="{{$employee['data']['LEAVE_DAYS']}}" readonly>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Gender:</strong>
-                <input type="radio" name="gender" value="Male" {{$employee['data']['GENDER'] == 'Male'? 'checked' : ''}} disabled> Male
-                <input type="radio" name="gender" value="Female" {{$employee['data']['GENDER'] == 'Female'? 'checked' : ''}} disabled> Female
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

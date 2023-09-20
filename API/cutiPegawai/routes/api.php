@@ -29,10 +29,11 @@ Route::delete('/employees/delete/{id}', [EmployeeController::class, 'destroy']);
 Route::post('/employees/proceed/{id}', [EmployeeController::class, 'proceed']);
 
 Route::get('/paidleaves', [PaidLeaveController::class, 'index']);
-Route::get('/paidleaves/store', [PaidLeaveController::class, 'store']);
-Route::get('/paidleaves/{$id}', [PaidLeaveController::class, 'show']);
-Route::get('/paidleaves/update/{id}', [PaidLeaveController::class, 'update']);
+Route::get('/paidleaves/{id}', [PaidLeaveController::class, 'show']);
+Route::patch('/paidleaves/update/{id}', [PaidLeaveController::class, 'update']);
 Route::get('/paidleaves/delete/{id}', [PaidLeaveController::class, 'destroy']);
+Route::post('/paidleaves/proceed/{id}', [PaidLeaveController::class, 'proceed']);
+
 
 Route::post('/register',[AuthController::class, 'register']);
 Route::post('/login',[AuthController::class, 'login']);

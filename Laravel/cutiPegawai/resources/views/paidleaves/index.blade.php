@@ -40,7 +40,7 @@
                             <td>{{ $paidLeave['POSITION'] }}</td>
                             <td>{{ $paidLeave['LEVEL'] }}</td>
                             <td>
-                                <a class="btn btn-circle btn-primary " href="#">
+                                <a class="btn btn-circle btn-primary " href="{{ route('paidleaves.edit', $paidLeave['id']) }}">
                                     <i class="fas fa-edit fa-md"></i></a>
                             </td>
                             <td>

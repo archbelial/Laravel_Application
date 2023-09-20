@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('GENDER', 20);
             $table->string('POSITION', 50);
             $table->string('LEVEL', 20);
+            $table->string('STATUS', 10);
             $table->integer('LEAVE_DAYS');
             $table->timestamps();
         });

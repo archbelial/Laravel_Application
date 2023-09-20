@@ -13,7 +13,7 @@ class UpdatePaidLeaveRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
